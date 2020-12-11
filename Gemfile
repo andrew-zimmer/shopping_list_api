@@ -3,7 +3,11 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.6.1'
 
+#user authentication gem
 gem 'devise'
+
+#user JWT gem
+gem 'simple_token_authentication', '~> 1.17'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 6.0.3', '>= 6.0.3.4'
