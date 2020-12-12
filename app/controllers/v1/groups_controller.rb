@@ -1,4 +1,4 @@
-class V1::SessionsController < ApplicationController
+class V1::GroupsController < ApplicationController
     before_action :authenticaticate_user!
 
     def create
@@ -12,12 +12,12 @@ class V1::SessionsController < ApplicationController
     end
 
     def index
-        @groups = Group.all
+        @groups = Groups.all
         render :index
     end
 
     def show
-        @group = Group.find_by(id: params[:id])
+        @group = Groups.find_by(id: params[:id])
         if @group
             render :show
         else
@@ -26,7 +26,7 @@ class V1::SessionsController < ApplicationController
     end
 
     def update
-        @group = Group.find_by(id: params[:id])
+        @group = Groups.find_by(id: params[:id])
         if @group.update(group_params)
             render :update
         else
@@ -35,7 +35,7 @@ class V1::SessionsController < ApplicationController
     end
 
     def destroy
-        group = Group.find_by(id: params[:id])
+        group = Groups.find_by(id: params[:id])
         if group
             group.destroy
             render json: :ok
