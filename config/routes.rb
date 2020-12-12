@@ -7,5 +7,6 @@ Rails.application.routes.draw do
     resource :users, only: [:create]
     resource :groups, only: [:create, :destroy, :update, :show, :index]
     resource :lists, only: [:create, :update, :show, :index, :destroy]
+    resource :list_items, only: [:create, :update, :show, :index, :destroy]
   end
 end

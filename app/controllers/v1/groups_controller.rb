@@ -2,7 +2,7 @@ class V1::GroupsController < ApplicationController
     before_action :authenticaticate_user!
 
     def create
-        user = Users.find_by[id: params[:id]]
+        user = User.find_by[id: params[:id]]
         @group = user.build_group(group_params)
         if @group.save
             render :create
@@ -12,12 +12,12 @@ class V1::GroupsController < ApplicationController
     end
 
     def index
-        @groups = Groups.all
+        @groups = Group.all
         render :index
     end
 
     def show
-        @group = Groups.find_by(id: params[:id])
+        @group = Group.find_by(id: params[:id])
         if @group
             render :show
         else
@@ -26,7 +26,7 @@ class V1::GroupsController < ApplicationController
     end
 
     def update
-        @group = Groups.find_by(id: params[:id])
+        @group = Group.find_by(id: params[:id])
         if @group.update(group_params)
             render :update
         else
@@ -35,7 +35,7 @@ class V1::GroupsController < ApplicationController
     end
 
     def destroy
-        group = Groups.find_by(id: params[:id])
+        group = Group.find_by(id: params[:id])
         if group
             group.destroy
             render json: :ok

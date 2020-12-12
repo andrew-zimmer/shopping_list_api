@@ -2,7 +2,7 @@ class V1::ListsController < ApplicationController
     before_action :authenticaticate_user!
 
     def create
-        group = Groups.find_by[id: params[:id]]
+        group = Group.find_by[id: params[:id]]
         @list = group.list.build(list_params)
         if @group.save
             render :create
@@ -12,12 +12,13 @@ class V1::ListsController < ApplicationController
     end
 
     def index
-        @lists = Lists.all
+        group = Group.find_by[id: params[:id]]
+        @lists = group.lists.all
         render :index
     end
 
     def show
-        @list = Lists.find_by(id: params[:id])
+        @list = List.find_by(id: params[:id])
         if @list
             render :show
         else
@@ -26,7 +27,7 @@ class V1::ListsController < ApplicationController
     end
 
     def update
-        @list = Lists.find_by(id: params[:id])
+        @list = List.find_by(id: params[:id])
         if @list.update(list_params)
             render :update
         else
@@ -35,9 +36,9 @@ class V1::ListsController < ApplicationController
     end
 
     def destroy
-        list = Lists.find_by(id: params[:id])
-        if group
-            group.destroy
+        list = List.find_by(id: params[:id])
+        if list
+            list.destroy
             render json: :ok
         else
             head(:unauthorized)

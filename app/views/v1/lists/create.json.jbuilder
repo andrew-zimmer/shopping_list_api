@@ -3,7 +3,7 @@ json.data do
         json.call(
             @list,
             :name,
-            :listItems
+            :list_items
         )
     end
 end
