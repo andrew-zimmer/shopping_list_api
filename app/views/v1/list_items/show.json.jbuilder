@@ -3,7 +3,9 @@ json.data do
         json.call(
             @list_item,
             :item,
-            :checked
+            :checked,
+            :id,
+            :list
         )
     end
 end

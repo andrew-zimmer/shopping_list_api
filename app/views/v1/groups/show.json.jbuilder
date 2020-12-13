@@ -3,7 +3,8 @@ json.data do
         json.call(
             @group,
             :name,
-            :users
+            :users,
+            :id
         )
     end
 end

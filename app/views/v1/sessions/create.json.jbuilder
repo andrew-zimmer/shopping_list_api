@@ -6,7 +6,7 @@ json.data do
             :id,
             :username,
             :authentication_token,
-            :quick_picks
+            :groups
         )
     end
 end

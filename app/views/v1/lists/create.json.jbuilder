@@ -3,7 +3,9 @@ json.data do
         json.call(
             @list,
             :name,
-            :list_items
+            :list_items,
+            :id,
+            :group
         )
     end
 end

@@ -1,10 +1,10 @@
 class V1::GroupsController < ApplicationController
-    before_action :authenticaticate_user!
+    before_action :authenticate_user!
 
     def create
-        user = User.find_by[id: params[:id]]
-        @group = user.build_group(group_params)
-        if @group.save
+        user = User.find_by(email: params[:user_email])
+        @group = user.groups.build(group_params)
+        if user.save
             render :create
         else
             render json: {errors: @group.errors.full_messages}

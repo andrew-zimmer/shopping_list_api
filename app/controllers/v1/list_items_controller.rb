@@ -1,37 +1,37 @@
 class V1::ListItemsController < ApplicationController
-    before_action :authenticaticate_user!
+    before_action :authenticate_user!
 
     def create
-        list = List.find_by[id: params[:id]]
-        @item = list.item.build(list_item_params)
-        if @item.save
+        list = List.find_by(id: params[:list_id])
+        @list_item = list.list_items.build(list_item_params)
+        if list.save
             render :create
         else
-            render json: {errors: @item.errors.full_messages}
+            render json: {errors: @list_item.errors.full_messages}
         end
     end
 
     def index
-        list = List.find_by[id: params[:id]]
-        @items = list.items
+        list = List.find_by(id: params[:list_id])
+        @list_items = list.list_items
         render :index
     end
 
     def show
-        @item = items.find_by(id: params[:id])
-        if @item
+        @list_item = ListItem.find_by(id: params[:id])
+        if @list_item
             render :show
         else
-            render json: {errors: @item.errors.full_messages}
+            render json: {errors: @list_item.errors.full_messages}
         end
     end
 
     def update
-        @item = ListItem.find_by(id: params[:id])
-        if @item.update(list_item_params)
+        @list_item = ListItem.find_by(id: params[:id])
+        if @list_item.update(list_item_params)
             render :update
         else
-            render json: {errors: @item.errors.full_messages}
+            render json: {errors: @list_item.errors.full_messages}
         end
     end
 
@@ -47,6 +47,6 @@ class V1::ListItemsController < ApplicationController
 
     private
     def list_item_params
-        params.require(:list).permit(:name, :checked)
+        params.require(:list_item).permit(:item, :checked)
     end
 end

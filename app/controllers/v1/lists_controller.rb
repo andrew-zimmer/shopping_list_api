@@ -1,10 +1,10 @@
 class V1::ListsController < ApplicationController
-    before_action :authenticaticate_user!
+    before_action :authenticate_user!
 
     def create
-        group = Group.find_by[id: params[:id]]
-        @list = group.list.build(list_params)
-        if @group.save
+        group = Group.find_by(id: params[:group_id])
+        @list = group.lists.build(list_params)
+        if group.save
             render :create
         else
             render json: {errors: @list.errors.full_messages}
@@ -12,7 +12,7 @@ class V1::ListsController < ApplicationController
     end
 
     def index
-        group = Group.find_by[id: params[:id]]
+        group = Group.find_by(id: params[:group_id])
         @lists = group.lists.all
         render :index
     end
